@@ -1,2 +1,2 @@
 # hertzinfakt-site
-Website "HertzInFakt" website
+Website of the "HertzInFakt" Podcast
