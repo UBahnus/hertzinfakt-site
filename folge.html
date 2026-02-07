@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HertzInFakt</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙</text></svg>">
+</head>
+<body class="page">
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">HertzInFakt</a>
+      <div class="nav-links">
+        <a href="folgen.html" class="active">Folgen</a>
+        <a href="ueber-uns.html">Über uns</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="content">
+    <a href="folgen.html" class="ep-back">&larr; Alle Folgen</a>
+
+    <div id="ep-detail">
+      <p style="color:#999;font-size:0.9rem">Wird geladen…</p>
+    </div>
+
+    <div id="ep-error" style="display:none">
+      <p style="color:#999;font-size:0.9rem;margin-bottom:1rem">Folge konnte nicht geladen werden.</p>
+      <div class="ep-platforms">
+        <a href="https://open.spotify.com/show/3XBMHVfX9mzXzKMxGCedEe" target="_blank" rel="noopener">Spotify</a>
+        <a href="https://podcasts.apple.com/podcast/id1717636768" target="_blank" rel="noopener">Apple Podcasts</a>
+        <a href="https://music.amazon.de/podcasts/531cadb9-122c-4082-9dff-fe9644208fc5/hertzinfakt" target="_blank" rel="noopener">Amazon Music</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    HertzInFakt · Podcast AG · <a href="https://hhgym.de/" target="_blank" rel="noopener">Heinrich-Hertz-Gymnasium</a> Berlin
+  </footer>
+
+  <script src="js/podcast.js"></script>
+  <script src="js/player.js"></script>
+  <script>
+    function esc(s) {
+      var d = document.createElement("div");
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    (async () => {
+      var slug = new URLSearchParams(location.search).get("ep");
+      var detailEl = document.getElementById("ep-detail");
+      var errorEl = document.getElementById("ep-error");
+
+      if (!slug) { location.href = "folgen.html"; return; }
+
+      var episodes = await getEpisodes();
+
+      if (!episodes) {
+        detailEl.style.display = "none";
+        errorEl.style.display = "block";
+        return;
+      }
+
+      var ep = episodes.find(function (e) { return e.slug === slug; });
+
+      if (!ep) {
+        detailEl.innerHTML = '<p style="color:#999">Folge nicht gefunden.</p>';
+        return;
+      }
+
+      document.title = ep.title + " \u2013 HertzInFakt";
+
+      // Build filename from slug
+      var ext = ep.audio.match(/\.(m4a|mp3|ogg)/) ? ep.audio.match(/\.(m4a|mp3|ogg)/)[0] : ".mp3";
+      var dlName = "HertzInFakt-" + ep.slug + ext;
+
+      detailEl.innerHTML =
+        '<div class="ep-detail-header">' +
+          "<h1>" + esc(ep.title) + "</h1>" +
+          '<div class="ep-detail-meta">' + ep.labelLong + " \u00b7 " + ep.date + " \u00b7 " + ep.duration + "</div>" +
+        "</div>" +
+        '<div id="player-mount"></div>' +
+        '<div class="ep-desc"><p>' + esc(ep.desc) + "</p></div>" +
+        '<div class="ep-platforms">' +
+          '<a href="https://open.spotify.com/show/3XBMHVfX9mzXzKMxGCedEe" target="_blank" rel="noopener">Spotify</a>' +
+          '<a href="https://podcasts.apple.com/podcast/id1717636768" target="_blank" rel="noopener">Apple Podcasts</a>' +
+          '<a href="https://music.amazon.de/podcasts/531cadb9-122c-4082-9dff-fe9644208fc5/hertzinfakt" target="_blank" rel="noopener">Amazon Music</a>' +
+        "</div>";
+
+      initPlayer(document.getElementById("player-mount"), ep.audio, dlName);
+    })();
+  </script>
+
+</body>
+</html>

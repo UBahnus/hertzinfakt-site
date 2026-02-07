@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folgen – HertzInFakt</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙</text></svg>">
+</head>
+<body class="page">
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">HertzInFakt</a>
+      <div class="nav-links">
+        <a href="folgen.html" class="active">Folgen</a>
+        <a href="ueber-uns.html">Über uns</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="content">
+    <div class="page-header">
+      <h1>Alle Folgen</h1>
+      <p id="ep-count"></p>
+    </div>
+
+    <div id="ep-list" class="ep-list">
+      <p style="color:#999;font-size:0.9rem">Folgen werden geladen…</p>
+    </div>
+
+    <div id="ep-error" style="display:none">
+      <p style="color:#999;font-size:0.9rem;margin-bottom:1rem">Folgen konnten nicht geladen werden. Hör direkt rein:</p>
+      <div class="ep-platforms">
+        <a href="https://open.spotify.com/show/3XBMHVfX9mzXzKMxGCedEe" target="_blank" rel="noopener">Spotify</a>
+        <a href="https://podcasts.apple.com/podcast/id1717636768" target="_blank" rel="noopener">Apple Podcasts</a>
+        <a href="https://music.amazon.de/podcasts/531cadb9-122c-4082-9dff-fe9644208fc5/hertzinfakt" target="_blank" rel="noopener">Amazon Music</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    HertzInFakt · Podcast AG · <a href="https://hhgym.de/" target="_blank" rel="noopener">Heinrich-Hertz-Gymnasium</a> Berlin
+  </footer>
+
+  <script src="js/podcast.js"></script>
+  <script>
+    function esc(s) {
+      const d = document.createElement("div");
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    (async () => {
+      const episodes = await getEpisodes();
+      const listEl = document.getElementById("ep-list");
+      const countEl = document.getElementById("ep-count");
+      const errorEl = document.getElementById("ep-error");
+
+      if (!episodes) {
+        listEl.style.display = "none";
+        errorEl.style.display = "block";
+        return;
+      }
+
+      const epCount = episodes.filter((e) => e.num).length;
+      countEl.textContent = epCount + " Folgen seit November 2023";
+
+      listEl.innerHTML = episodes
+        .map(
+          (ep) =>
+            '<a href="folge.html?ep=' + ep.slug + '" class="ep-item">' +
+              '<span class="ep-num">' + ep.label + "</span>" +
+              '<div class="ep-info">' +
+                '<div class="ep-title">' + esc(ep.title) + "</div>" +
+                '<div class="ep-meta">' + ep.date + " · " + ep.duration + "</div>" +
+              "</div>" +
+              '<span class="ep-arrow">\u2192</span>' +
+            "</a>"
+        )
+        .join("");
+    })();
+  </script>
+
+</body>
+</html>

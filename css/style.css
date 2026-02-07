@@ -1,0 +1,591 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* =========================================
+   LINKTREE PAGE (index.html)
+   ========================================= */
+
+body.lt {
+  font-family: 'Inter', sans-serif;
+  background: #252525;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lt-container {
+  width: 100%;
+  max-width: 680px;
+  padding: 2.5rem 1.25rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lt-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+}
+
+.lt-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.lt-bio {
+  font-size: 0.85rem;
+  color: #ccc;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+/* Social icons row */
+.lt-socials {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.lt-socials a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.lt-socials a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.lt-socials svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+
+/* Link buttons */
+.lt-links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lt-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.lt-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.lt-btn--muted {
+  background: rgba(255,255,255,0.08);
+  color: #ccc;
+  font-weight: 500;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.lt-btn--muted:hover {
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+}
+
+.lt-footer {
+  margin-top: 2.5rem;
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.lt-footer a {
+  color: #888;
+  text-decoration: none;
+}
+
+/* =========================================
+   REGULAR PAGES (folgen, ueber-uns, detail)
+   ========================================= */
+
+body.page {
+  font-family: 'Inter', sans-serif;
+  background: #fafafa;
+  color: #111;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.nav-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+}
+
+.nav-logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #111;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.nav-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #111;
+}
+
+/* Main container */
+.content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+/* Page header */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.page-header p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* ---- Episode List (folgen.html) ---- */
+
+.ep-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ep-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+
+.ep-item:first-child {
+  padding-top: 0;
+}
+
+.ep-item:hover {
+  background: #f5f5f5;
+  margin: 0 -0.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: 8px;
+}
+
+.ep-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #999;
+  min-width: 28px;
+  padding-top: 0.15rem;
+}
+
+.ep-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ep-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.15rem;
+  line-height: 1.35;
+}
+
+.ep-meta {
+  font-size: 0.78rem;
+  color: #999;
+}
+
+.ep-arrow {
+  color: #ccc;
+  font-size: 1.1rem;
+  padding-top: 0.15rem;
+}
+
+/* ---- Episode Detail (folgen/folge-X.html) ---- */
+
+.ep-back {
+  display: inline-block;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.ep-back:hover {
+  color: #111;
+}
+
+.ep-detail-header {
+  margin-bottom: 1.5rem;
+}
+
+.ep-detail-header h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+}
+
+.ep-detail-meta {
+  font-size: 0.82rem;
+  color: #888;
+}
+
+/* ---- Custom Player ---- */
+
+.player {
+  background: #111;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+  user-select: none;
+}
+
+.player-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.player-play {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.1s;
+}
+
+.player-play:hover { transform: scale(1.06); }
+.player-play:active { transform: scale(0.96); }
+
+.player-play svg {
+  width: 20px;
+  height: 20px;
+  fill: #111;
+  margin-left: 2px;
+}
+
+.player-play.is-playing svg { margin-left: 0; }
+
+.player-track {
+  flex: 1;
+  min-width: 0;
+}
+
+.player-bar-wrap {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.player-bar {
+  width: 100%;
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+  position: relative;
+  overflow: visible;
+}
+
+.player-bar-loaded {
+  height: 100%;
+  background: #444;
+  border-radius: 3px;
+  width: 0%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.player-bar-fill {
+  height: 100%;
+  background: #fff;
+  border-radius: 3px;
+  width: 0%;
+  position: relative;
+}
+
+.player-knob {
+  position: absolute;
+  right: -8px;
+  top: -5px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.player-bar-wrap:hover .player-knob,
+.player.is-dragging .player-knob {
+  opacity: 1;
+}
+
+.player-time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #666;
+  margin-top: 0.3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.player-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.player-speed {
+  background: none;
+  border: 1px solid #333;
+  color: #999;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.player-speed:hover {
+  border-color: #555;
+  color: #fff;
+}
+
+.player-dl {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #999;
+  text-decoration: none;
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid #333;
+  border-radius: 4px;
+  transition: border-color 0.15s, color 0.15s;
+  cursor: pointer;
+  background: none;
+  font-family: inherit;
+}
+
+.player-dl:hover {
+  border-color: #555;
+  color: #fff;
+}
+
+.player-dl svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.ep-desc {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.ep-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ep-platforms a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.ep-platforms a:hover {
+  background: #333;
+}
+
+/* ---- About (ueber-uns.html) ---- */
+
+.about-section {
+  margin-bottom: 2rem;
+}
+
+.about-section h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.about-section p,
+.about-section li {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: #333;
+}
+
+.about-section ul {
+  padding-left: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.about-section ul li {
+  margin-bottom: 0.15rem;
+}
+
+.info-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.info-box {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.info-box .val {
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.info-box .lbl {
+  font-size: 0.72rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contact-btn {
+  display: inline-block;
+  padding: 0.65rem 1.75rem;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.contact-btn:hover {
+  background: #333;
+}
+
+/* Footer */
+.page-footer {
+  text-align: center;
+  padding: 1.5rem 1.25rem;
+  font-size: 0.75rem;
+  color: #aaa;
+  border-top: 1px solid #eee;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.page-footer a {
+  color: #888;
+  text-decoration: none;
+}
+
+.page-footer a:hover {
+  color: #111;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .lt-container { padding: 2rem 1rem; }
+  .lt-avatar { width: 80px; height: 80px; }
+  .lt-title { font-size: 1.1rem; }
+  .content { padding: 1.5rem 1rem 3rem; }
+  .page-header h1 { font-size: 1.25rem; }
+  .ep-detail-header h1 { font-size: 1.15rem; }
+  .info-boxes { grid-template-columns: 1fr; }
+}
